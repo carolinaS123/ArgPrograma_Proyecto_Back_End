@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter @Setter
 @Table
 @Entity
@@ -44,9 +45,8 @@ public class Educacion {
 
     public Educacion() {
     }
-
+  
     public Educacion(String institucion, String titulacion, String inicio_edu, String fin_edu, String descripcion_edu, Long personaId) {
-   
         this.institucion = institucion;
         this.titulacion = titulacion;
         this.inicio_edu = inicio_edu;

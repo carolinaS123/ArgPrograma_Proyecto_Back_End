@@ -5,15 +5,19 @@ import java.util.List;
 
 public interface ISSkills {
     
-    //metodo para traer todas las skills
-    public List<Skills> verSkills();
+    //metodo para traer todos los skills
+    public List<Skills> mostrarSkills();
 
-    //metodo para dar de alta una skill
+    //metodo para dar de alta un skill
     public void crearSkill(Skills habil);
 
-    //metodo para borrar una skill
+    //metodo para borrar un skill
     public void borrarSkill(Long id);
 
-    //metodo para encontrar una skill
+    //metodo para editar un skill
+    public Skills editarSkill(Long id);
+    
+    //metodo para encontrar un skill
     public Skills buscarSkill(Long id);
+   
 }

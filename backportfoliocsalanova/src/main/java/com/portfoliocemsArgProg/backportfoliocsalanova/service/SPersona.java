@@ -35,5 +35,16 @@ public class SPersona implements ISPersona{
         Persona perso = rPersona.findById(id).orElse(null);
         return perso;
     }
-
+   
+    public Persona findPersona(Long id ) {
+        Persona personita =  rPersona.findById(id).orElse(null);
+        return personita;
+    }
+   public Persona loginPersona(String email, String password){
+    List<Persona> personas=rPersona.findByEmailAndPassword(email, password);
+    if(!personas.isEmpty()){
+        return personas.get(0);
+     }
+    return null;
+   }
 }

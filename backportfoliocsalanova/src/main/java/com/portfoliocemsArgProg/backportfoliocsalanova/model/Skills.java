@@ -27,8 +27,8 @@ public class Skills {
     private String skill;
 
     @NotNull
-    @Min(0)
-    @Max(100)
+    @Min(value = 0)
+    @Max(value = 100)
     private int porcentaje;
 
     //Con esto llama al dato que lo relaciona al objeto persona y lo va a traer con todos sus objetos relacionados 

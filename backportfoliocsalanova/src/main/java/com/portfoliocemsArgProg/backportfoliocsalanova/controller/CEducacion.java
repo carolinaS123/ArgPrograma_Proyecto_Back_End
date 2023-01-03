@@ -4,6 +4,7 @@ import com.portfoliocemsArgProg.backportfoliocsalanova.model.Educacion;
 import com.portfoliocemsArgProg.backportfoliocsalanova.service.SEducacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,41 +12,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class CEducacion {
-
     @Autowired
     private SEducacion educServ;
-    
-    /////////////////  Para ver todos los estudios ///////////////////
-    @GetMapping("/ver/educaciones")
-    @ResponseBody
-    public List<Educacion> verEducaciones() {
-        return educServ.verEducaciones();
+
+/////////////////  Para ver todos los estudios ///////////////////
+    @GetMapping("/mostrar")
+    public List<Educacion> mostrarEducaciones() {
+        return educServ.mostrarEducaciones();
     }
 /////////////////  Para crear un estudio  ///////////////////
-    @PostMapping("/new/educacion")
-    public String agregarEducacion(@RequestBody Educacion edu) {
+    @PostMapping("/crear")
+    public String crearEducacion(@RequestBody Educacion edu) {
         educServ.crearEducacion(edu);
         return "El estudio fue creado correctamente";
     }
 /////////////////  Para borrar un estudio  ///////////////////
-    @DeleteMapping("/delete/educacion/{id}")
-    public String eliminarEducacion(@PathVariable Long id) {
+    @DeleteMapping("/borrar/{id}")
+    public String borrarEducacion(@PathVariable Long id) {
         educServ.borrarEducacion(id);
         return "El estudio fue borrado correctamente";
     }
 ////////////////  Para buscar un estudio  ///////////////////
-    @GetMapping("/buscar/educacion/{id}")
-    public Educacion  buscarEducacion(@PathVariable Long id){
+    @GetMapping("/buscar/{id}")
+    public Educacion buscarEducacion(@PathVariable Long id) {
         return educServ.buscarEducacion(id);
     }
 /////////////////  Para editar un estudio  ///////////////////
-    @PutMapping("/educaciones/editar/{id}")
-    public Educacion editEducacion(@PathVariable Long id,
+    @PutMapping("/editar/{id}")
+    public Educacion editarEducacion(@PathVariable Long id,
             @RequestParam("institucion") String nuevaInstitucion,
             @RequestParam("titulacion") String nuevaTitulacion,
             @RequestParam("inicio_edu") String nuevoInicio_edu,
@@ -53,7 +52,7 @@ public class CEducacion {
             @RequestParam("descripcion_edu") String nuevaDescripcion_edu,
             @RequestParam("personaId") Long nuevaPersonaId) {
 
-//busco el estudio 
+         //se busca el estudio 
         Educacion edu = educServ.buscarEducacion(id);
         edu.setInstitucion(nuevaInstitucion);
         edu.setTitulacion(nuevaTitulacion);
@@ -65,4 +64,15 @@ public class CEducacion {
         //retorna un nuevo estudio
         return edu;
     }
+    /*
+ /////////////////  Para crear un estudio  ///////////////////
+    @PostMapping("educaciones/new/educacion")
+    public ResponseEntity<?> crearEducacion(@RequestBody Educacion educacion){
+        educacion=new Educacion(
+           educacion.getInstitucion(), educacion.getTitulacion(), educacion.getInicio_edu(), educacion.getFin_edu(), educacion.getDescripcion_edu(), educacion.getPersonaId()
+       );
+       educServ.crearEducacion(educacion);
+       return new ResponseEntity("Educacion creada", HttpStatus.OK);
+    }
+    */
 }

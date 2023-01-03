@@ -10,11 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 @Transactional
 public class SEducacion implements ISEducacion {
+
     @Autowired
     REducacion rEducacion;
 
     @Override
-    public List<Educacion> verEducaciones() {
+    public List<Educacion> mostrarEducaciones() {
         List<Educacion> listaEducaciones = rEducacion.findAll();
         return listaEducaciones;
     }
@@ -28,7 +29,12 @@ public class SEducacion implements ISEducacion {
     public void borrarEducacion(Long id) {
         rEducacion.deleteById(id);
     }
-
+     @Override
+    public Educacion editarEducacion(Long id) {
+        //terminar de hacer el metodo de editar
+        Educacion habil = rEducacion.findById(id).orElse(null);
+        return habil;
+    }
     @Override
     public Educacion buscarEducacion(Long id) {
         Educacion edu = rEducacion.findById(id).orElse(null);

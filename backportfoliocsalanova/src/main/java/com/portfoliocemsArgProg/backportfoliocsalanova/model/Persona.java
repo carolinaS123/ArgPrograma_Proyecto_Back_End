@@ -1,5 +1,6 @@
 package com.portfoliocemsArgProg.backportfoliocsalanova.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,15 +36,16 @@ public class Persona {
     private String titulo;
 
     @NotNull
-    @Lob//annotation q convierte un String en LONGTEXT      
+    @Lob//annotation q convierte un String en LONGTEXT    
+    @Column(length=3000)
     private String acerca_de;
 
     @NotNull
-    @Lob
+    @Column(length=5000)
     private String url_foto;
 
     @NotNull
-    @Lob
+    @Column(length=5000)
     private String url_banner;
 
     @NotNull
@@ -51,7 +53,7 @@ public class Persona {
     private String name_usuario;
 
     @NotNull
-    @Lob
+    @Size(min = 5, max = 200, message = "No cumple con la longitud")
     private String email;
 
     @NotNull

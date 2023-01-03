@@ -15,7 +15,7 @@ public class SSkills implements ISSkills {
     RSkills rSkills;
 
     @Override
-    public List<Skills> verSkills() {
+    public List<Skills> mostrarSkills() {
         List<Skills> listaSkills = rSkills.findAll();
         return listaSkills;
     }
@@ -28,6 +28,13 @@ public class SSkills implements ISSkills {
     @Override
     public void borrarSkill(Long id) {
         rSkills.deleteById(id);
+    }
+
+    @Override
+    public Skills editarSkill(Long id) {
+        //terminar de hacer el metodo de editar
+        Skills habil = rSkills.findById(id).orElse(null);
+        return habil;
     }
 
     @Override
